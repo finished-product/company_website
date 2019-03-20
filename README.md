@@ -84,7 +84,7 @@
 ```html
 //index.html页面中给轮播img标签设置最小高度200px
 <div class="item active">
-  ![](http://localhost:3000/web/images/index3.jpg)
+  ![](/web/images/index3.jpg)
 </div>
 ```
 
@@ -115,7 +115,7 @@
 
 ```html
 //网页中使用图片验证码的地方，有个style设置图片可以点击，同时onclick实现图片验证码点击刷新。
-![](http://localhost:3000/captcha)
+![](/captcha)
 ```
 
 - 5.3、当网站有用户提交反馈信息时，工作人员希望在后台可及时收到消息提示信息。想着简单的方法，通过 js 定时查询数据库，发现有数据更新及时弹窗提醒工作人员。效果如下：
