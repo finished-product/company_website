@@ -1,0 +1,10 @@
+version: '3'
+services:
+  # 数据库
+  mongodb:
+    image: mongo:3.4.20-jessie
+    restart: always
+    volumes:
+        - './docker/data:/data/db'
+    ports:
+      - 27017:27017

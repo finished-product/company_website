@@ -41,14 +41,14 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">密码</label>
 						<div class="layui-input-block">
-							<input type="text" name="password" id="password" lay-verify="title" autocomplete="off" placeholder="请输入密码" class="layui-input">
+							<input type="password" name="password" id="password" lay-verify="title" autocomplete="off" placeholder="请输入密码" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
 						<label class="layui-form-label">验证码</label>
 						<div class="layui-input-block">
 							<!--图片验证码，点击图片实现刷新-->
-							<img src="http://localhost:3000/captcha"  style="float: right;width: 40%;height: 38px;cursor:pointer" onclick="this.src='http://localhost:3000/captcha?d='+Math.random();">
+							<img id="captcha-img" src="/captcha"  style="float: right;width: 40%;height: 38px;cursor:pointer" onclick="updateCaptcha()">
 							<input type="text" name="captcha" id="captcha" style="width: 60%" autocomplete="off" placeholder="请输入验证码" class="layui-input">
 						</div>
 
@@ -76,6 +76,9 @@
 
 	<script type="text/javascript" src="/admin/plugins/layui/layui.js"></script>
 		<script>
+			function updateCaptcha () {
+				document.querySelector('#captcha-img').src='/captcha?d='+Math.random();
+			}
 			layui.use(['layer', 'form'], function() {
 				var layer = layui.layer,
 					$ = layui.jquery,
@@ -100,6 +103,8 @@
 					$.post("http://localhost:3000/login",{username:username,password:password,captcha:captcha},function(result){
 						if(result.status==="captcha error"){
 							layer.alert('验证码错误', {icon: 2});
+							// 刷新验证码
+							updateCaptcha()
 						}else if(result.status==="error"){
 							layer.alert('系统错误', {icon: 2});
 						}else if(result.status==="not exist"){
